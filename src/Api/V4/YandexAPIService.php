@@ -232,10 +232,15 @@ class YandexAPIService extends SoapClientV4
      * @param string[] $params
      * @return Contract\ClientInfo[]
      */
-    public function getClientInfo(array $params)
-    {
-        return $this->invoke('GetClientInfo', [$params]);
-    }
+     public function getClientInfo(array $params = [])
+     {
+        if (empty($params)) {
+            return $this->invoke('GetClientInfo');
+        }
+        else {
+            return $this->invoke('GetClientInfo', [$params]);
+        }
+     }
 
     /**
      * UpdateClientInfo.
